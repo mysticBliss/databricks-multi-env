@@ -8,11 +8,11 @@ module "calling_unity_catalog" {
   access_connector_name      = var.access_connector_name
   metastore_name             = var.metastore_name
   tags                       = var.tags
-  
+
   providers = {
     azurerm    = azurerm
     databricks = databricks.account
   }
 
-} 
+}
 

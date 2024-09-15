@@ -51,15 +51,6 @@ variable "tags" {
 }
 
 
-## Databricks
-variable "account_id" {
-  description = "Datarbicks account ID"
-  type        = string
-
-
-}
-
-
 ## DataBricks
 variable "databricks_account_id" {
   description = "Datarbicks account ID"
