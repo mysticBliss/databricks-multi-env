@@ -51,6 +51,45 @@ This project uses several custom modules to manage different aspects of our Data
 
 These modules are designed to work together to create a comprehensive Databricks environment. They are referenced in the main Terraform configurations and can be customized as needed for different environments.
 
+## Setting Variables
+
+Before running Terraform, you need to set the appropriate variables for each environment and the Unity Catalog. This is done through .tfvars files:
+
+1. **Unity Catalog Variables**: 
+   Edit `commons/unity.tfvars.sample` to set variables specific to the Unity Catalog setup and rename is as `commons/unity.tfvars`. These include:
+
+   ```hcl
+   shared_resource_group_name = "rg-dbpoc-uc-uksouth"
+   location = "UK South"
+   metastore_storage_name =  "dbpocmetastoreuksouth"
+   access_connector_name = "dac-dbpoc-uksouth"
+   metastore_name = "dbpoc-metastore-uksouth"
+   
+   databricks_account_id = "databricks_account_id"
+   databricks_client_id     = "databricks_client_id"
+   databricks_client_secret = "databricks_client_secret"
+   
+   azure_client_id       = "azure_client_id"
+   azure_client_secret   = "azure_client_secret"
+   azure_tenant_id       = "azure_tenant_id"
+   azure_subscription_id = "azure_subscription_id"
+   ```
+
+2. **Environment-specific Variables**:
+   For each environment (dev, pre, prod), edit the corresponding file in the `environments/` directory and rename them as below:
+   - `dev.tfvars`
+   - `pre.tfvars`
+   - `prod.tfvars`
+
+   These files should contain environment-specific values such as:
+   ```hcl
+   environment         = "dev"  # or "pre", "prod"
+   workspace_name      = "dev-workspace"
+   resource_group_name = "rg-dev-databricks"
+   location            = "eastus"
+   ```
+
+
 ## Step 1: Create Unity Catalog
 
 1. Navigate to the `shared/unity-catalog` directory:
