@@ -10,9 +10,5 @@ locals {
     Requestor          = "saqib.tamli@clearpeaks.com"
   }
 
-  #   prefix = "databricks-multi-env"
-  #   ad_users = [
-  #   "saqib.tamli@clearpeaks.com",
-  #   "victor.colome@clearpeaks.com"
-  #  ]
+ 
 }

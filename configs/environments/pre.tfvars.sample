@@ -1,38 +1,37 @@
 # Required variables
 location                       = "uksouth"
-spoke_resource_group_name      = "rg-dbs-pre-env"
+spoke_resource_group_name      = "rg-dbs-dev-env"
 project_name                   = "dbs-poc"
-environment_name               = "pre"
+environment_name               = "dev"
 spoke_vnet_address_space       = "10.0.0.0/16"
 
-databricks_workspace_name      = "dbw-poc-pre"
+databricks_workspace_name      = "dbw-poc-dev"
 private_subnet_address_prefixes = ["10.0.1.0/24"]
 public_subnet_address_prefixes  = ["10.0.2.0/24"]
 
-account_id = "af587e06-4e3e-4d83-943d-68e7f131287d"
-client_id     = "71b0fdda-fef1-408d-825b-a2eb553af2c3"
-client_secret = "doseab7f00895be4df582bf268795f398e17"
+databricks_account_id = "databricks_account_id"
+databricks_client_id     = "databricks_client_id"
+databricks_client_secret = "databricks_client_secret"
 
-azure_client_id       = "71b0fdda-fef1-408d-825b-a2eb553af2c3"
-azure_client_secret   = "aF48Q~0FjYGMZcWOzjeiK9xIkXJUapZm2SUu8ac9"
-azure_tenant_id       = "d5b4529b-7457-49d9-931b-7c7f9b9eed54"
-azure_subscription_id = "f3ea9166-fb51-4a5e-b2ac-ea8118ef43ba"
+azure_client_id       = "azure_client_id"
+azure_client_secret   = "azure_client_secret"
+azure_tenant_id       = "azure_tenant_id"
+azure_subscription_id = "azure_subscription_id"
 
 # Optional variables with default values
 create_resource_group          = true
-managed_resource_group_name    = "rg-databricks-managed-pre"
-storage_account_names          = ["stadbs-poc-pre"]
-# data_factory_name              = "adf-dbs-poc-pre"
-# key_vault_name                 = "kv-dbs-poc-pre"
-
+managed_resource_group_name    = "rg-databricks-managed-dev"
+storage_account_names          = ["stadbs-poc-dev"]
+# data_factory_name              = "adf-dbs-poc-dev"
+# key_vault_name                 = "kv-dbs-poc-dev"
 
 ## Meta Data
 tags = {
     createdByTerraform = "True"
-    createdBy          = "saqib.tamli@clearpeaks.com"
+    createdBy          = "saqib.tamli@someone.com"
     Team               = "BDC"
-    Owner              = "saqib.tamli@clearpeaks.com"
+    Owner              = "saqib.tamli@someone.com"
     Project            = "Databricks Infra"
     Project-Type       = "POC"
-    Requestor          = "saqib.tamli@clearpeaks.com"
+    Requestor          = "saqib.tamli@someone.com"
   }
