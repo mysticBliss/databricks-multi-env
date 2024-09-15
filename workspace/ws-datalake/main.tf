@@ -12,6 +12,6 @@ module "calling_lakehouse" {
   databricks_workspace_name       = var.databricks_workspace_name
   private_subnet_address_prefixes = var.private_subnet_address_prefixes
   public_subnet_address_prefixes  = var.public_subnet_address_prefixes
-  tags                            = local.common_tags
+  tags                            = var.tags
 
 }

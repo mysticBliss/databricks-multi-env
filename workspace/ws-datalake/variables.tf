@@ -35,10 +35,10 @@ variable "spoke_vnet_address_space" {
   description = "(Required) The address space for the spoke Virtual Network"
 }
 
-# variable "tags" {
-#   type        = map(string)
-#   description = "(Required) Map of tags to attach to resources"
-# }
+variable "tags" {
+  type        = map(string)
+  description = "(Required) Map of tags to attach to resources"
+}
 
 variable "databricks_workspace_name" {
   type        = string
@@ -97,8 +97,20 @@ variable "azure_client_secret" {
 }
 
 ## DataBricks
-variable "account_id" {
+variable "databricks_account_id" {
   description = "Datarbicks account ID"
+  type        = string
+
+}
+
+variable "databricks_client_id" {
+  description = "Datarbicks client ID"
+  type        = string
+
+}
+
+variable "databricks_client_secret" {
+  description = "Datarbicks client_secret ID"
   type        = string
 
 }
