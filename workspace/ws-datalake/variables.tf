@@ -72,3 +72,10 @@ variable "storage_account_names" {
   description = "Names of additional storage accounts to create"
   default     = []
 }
+
+
+variable "account_id" {
+  description = "Datarbicks account ID"
+  type        = string
+  sensitive = true
+}

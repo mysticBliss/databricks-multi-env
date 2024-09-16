@@ -31,7 +31,11 @@ variable "tags" {
   description = "(Required) Map of tags to attach to resources"
 }
 
-
+variable "account_id" {
+  description = "Datarbicks account ID"
+  type        = string
+  sensitive = true
+}
 
 
 
