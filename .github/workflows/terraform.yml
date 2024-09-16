@@ -22,63 +22,61 @@ jobs:
       with:
         terraform_version: 1.4.6  # Use the appropriate Terraform version
 
-    - name: Print working directory
+    - name: Print working directory and tree
       run: |
         pwd
         tree
-        
+
     - name: Setup ENV variables
       run: echo "Environment variables set"
       env:
-          # https://registry.terraform.io/providers/databricks/databricks/latest/docs
-          DATABRICKS_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-          DATABRICKS_CLIENT_SECRET: ${{secrets.DATABRICKS_CLIENT_SECRET}}
+        # Databricks environment variables
+        DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+        DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
 
-          # https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs
-          ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-          ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-          ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION}}
-          ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
+        # Azure environment variables
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
-    - name: Navigate to /shared/unity_catalog and run Terraform Init
+    - name: Navigate to /shared/unity-catalog and run Terraform Init
       run: |
-        pwd
-        cd ./shared/unity_catalog
+        cd shared/unity-catalog
         terraform init
 
-    - name: Navigate to /shared/unity_catalog and run Terraform Plan
+    - name: Navigate to /shared/unity-catalog and run Terraform Plan
       run: |
-        cd ./shared/unity_catalog
-        terraform init
+        cd shared/unity-catalog
         terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
       
-
     - name: Navigate to /workspace/ws-datalake and create workspaces
       run: |
-        cd ./workspace/ws-datalake
-        terraform workspace new dev
-        terraform workspace new pre
-        terraform workspace new prod
+        cd workspace/ws-datalake
+        terraform workspace new dev || true
+        terraform workspace new pre || true
+        terraform workspace new prod || true
 
-    - name: Select workspace and create Terraform to creating DEV Env
+    - name: Select workspace and apply Terraform for DEV Env
       run: |
-        cd ./workspace/ws-datalake
+        cd workspace/ws-datalake
         terraform workspace select dev
         terraform init
         terraform plan --var-file="../../configs/environments/dev.tfvars"
         terraform apply --var-file="../../configs/environments/dev.tfvars" -auto-approve
         
-        # terraform workspace new pre
+        # Uncomment these lines to create and apply configurations for other environments
+        # terraform workspace select pre
         # terraform init
         # terraform plan --var-file="../../configs/environments/pre.tfvars"
         # terraform apply --var-file="../../configs/environments/pre.tfvars" -auto-approve
-        # terraform workspace new prod
         
+        # terraform workspace select prod
+        # terraform init
         # terraform plan --var-file="../../configs/environments/prod.tfvars"
         # terraform apply --var-file="../../configs/environments/prod.tfvars" -auto-approve
       
-      # Add `if` condition to run this step only on push to main or manually
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     # - name: Navigate to /workspace/ws-datalake and run Terraform Output
