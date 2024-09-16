@@ -43,12 +43,12 @@ jobs:
     - name: Navigate to /shared/unity_catalog and run Terraform Init
       run: |
         pwd
-        cd /shared/unity_catalog
+        cd ./shared/unity_catalog
         terraform init
 
     - name: Navigate to /shared/unity_catalog and run Terraform Plan
       run: |
-        cd /shared/unity_catalog
+        cd ./shared/unity_catalog
         terraform init
         terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
@@ -56,15 +56,14 @@ jobs:
 
     - name: Navigate to /workspace/ws-datalake and create workspaces
       run: |
-        cd /workspace/ws-datalake
+        cd ./workspace/ws-datalake
         terraform workspace new dev
         terraform workspace new pre
         terraform workspace new prod
 
     - name: Select workspace and create Terraform to creating DEV Env
       run: |
-        cd workspace/ws-datalake
-        
+        cd ./workspace/ws-datalake
         terraform workspace select dev
         terraform init
         terraform plan --var-file="../../configs/environments/dev.tfvars"
