@@ -13,8 +13,8 @@ jobs:
     name: Run Terraform
     runs-on: ubuntu-latest
     env:
-      # Azure environment variables
-      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      # Databricks environment variables
+      # DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
 
       # Azure environment variables
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -41,6 +41,12 @@ jobs:
         cd shared/unity-catalog
         terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
+      env:
+        # Azure environment variables
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
       
     - name: Navigate to /workspace/ws-datalake and create workspaces
       run: |
