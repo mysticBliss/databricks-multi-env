@@ -23,4 +23,5 @@ provider "databricks" {
   alias         = "account"
   host          = "https://accounts.azuredatabricks.net"
   account_id    =  var.account_id
+  auth_type = "oauth-m2m"
 }

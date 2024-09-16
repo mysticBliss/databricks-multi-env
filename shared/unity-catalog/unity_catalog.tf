@@ -12,7 +12,7 @@ module "calling_unity_catalog" {
   providers = {
     azurerm    = azurerm
     databricks = databricks.account
-    auth_type = "oauth-m2m"
+    
   }
 
 }
