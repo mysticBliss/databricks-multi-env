@@ -3,6 +3,7 @@ location = "UK South"
 metastore_storage_name =  "dbpocmetastoreuksouth"
 access_connector_name = "dac-dbpoc-uksouth"
 metastore_name = "dbpoc-metastore-uksouth"
+account_id = "71b0fdda-fef1-408d-825b-a2eb553af2c3"
 
 
 ## Meta Data

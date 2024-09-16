@@ -4,6 +4,7 @@ spoke_resource_group_name      = "rg-dbs-prod-env"
 project_name                   = "dbs-poc"
 environment_name               = "prod"
 spoke_vnet_address_space       = "10.0.0.0/16"
+account_id = "71b0fdda-fef1-408d-825b-a2eb553af2c3"
 
 databricks_workspace_name      = "dbs-poc-prod"
 private_subnet_address_prefixes = ["10.0.1.0/24"]

@@ -53,20 +53,17 @@ jobs:
         cd workspace/ws-datalake
         terraform workspace select dev
         terraform init
-        terraform destroy --var-file="../../configs/environments/dev.tfvars"
         terraform plan --var-file="../../configs/environments/dev.tfvars"
         terraform apply --var-file="../../configs/environments/dev.tfvars" -auto-approve
         
         # Uncomment these lines to create and apply configurations for other environments
         terraform workspace select pre
         terraform init
-        terraform destroy --var-file="../../configs/environments/pre.tfvars"
         terraform plan --var-file="../../configs/environments/pre.tfvars"
         terraform apply --var-file="../../configs/environments/pre.tfvars" -auto-approve
         
         terraform workspace select prod
         terraform init
-        terraform destroy --var-file="../../configs/environments/prod.tfvars"
         terraform plan --var-file="../../configs/environments/prod.tfvars"
         terraform apply --var-file="../../configs/environments/prod.tfvars" -auto-approve
       
