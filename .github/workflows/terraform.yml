@@ -31,14 +31,14 @@ jobs:
       run: echo "Environment variables set"
       env:
         # Databricks environment variables
-        DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-        DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        DATABRICKS_CLIENT_ID: ${{ env.DATABRICKS_CLIENT_ID }}
+        DATABRICKS_CLIENT_SECRET: ${{ env.DATABRICKS_CLIENT_SECRET }}
 
         # Azure environment variables
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        ARM_CLIENT_ID: ${{ env.AZURE_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ env.AZURE_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ env.AZURE_TENANT_ID }}
 
     - name: Navigate to /shared/unity-catalog and run Terraform Init
       run: |
