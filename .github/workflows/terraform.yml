@@ -22,10 +22,10 @@ jobs:
       with:
         terraform_version: 1.4.6  # Use the appropriate Terraform version
 
-    - name: Print working directory and tree
-      run: |
-        pwd
-        tree
+    # - name: Print working directory and tree
+    #   run: |
+    #     pwd
+    #     tree
 
     - name: Setup ENV variables
       run: echo "Environment variables set"
