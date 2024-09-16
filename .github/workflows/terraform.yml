@@ -13,10 +13,6 @@ jobs:
     name: Run Terraform
     runs-on: ubuntu-latest
     env:
-        # Set Environment Variables at Job level
-        # Databricks environment variables
-        # DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-        # DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
 
         # Azure environment variables
         ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -41,6 +37,7 @@ jobs:
     - name: Navigate to /shared/unity-catalog and run Terraform Plan
       run: |
         cd shared/unity-catalog
+        terraform destroy --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
       
@@ -56,17 +53,20 @@ jobs:
         cd workspace/ws-datalake
         terraform workspace select dev
         terraform init
+        terraform destroy --var-file="../../configs/environments/dev.tfvars"
         terraform plan --var-file="../../configs/environments/dev.tfvars"
         terraform apply --var-file="../../configs/environments/dev.tfvars" -auto-approve
         
         # Uncomment these lines to create and apply configurations for other environments
         terraform workspace select pre
         terraform init
+        terraform destroy --var-file="../../configs/environments/pre.tfvars"
         terraform plan --var-file="../../configs/environments/pre.tfvars"
         terraform apply --var-file="../../configs/environments/pre.tfvars" -auto-approve
         
         terraform workspace select prod
         terraform init
+        terraform destroy --var-file="../../configs/environments/prod.tfvars"
         terraform plan --var-file="../../configs/environments/prod.tfvars"
         terraform apply --var-file="../../configs/environments/prod.tfvars" -auto-approve
       
