@@ -51,24 +51,7 @@ variable "tags" {
 }
 
 
-## DataBricks
-variable "databricks_account_id" {
-  description = "Datarbicks account ID"
-  type        = string
 
-}
-
-variable "databricks_client_id" {
-  description = "Datarbicks client ID"
-  type        = string
-
-}
-
-variable "databricks_client_secret" {
-  description = "Datarbicks client_secret ID"
-  type        = string
-
-}
 
 
 

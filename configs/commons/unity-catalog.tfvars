@@ -2,16 +2,7 @@ shared_resource_group_name = "rg-dbpoc-uc-uksouth"
 location = "UK South"
 metastore_storage_name =  "dbpocmetastoreuksouth"
 access_connector_name = "dac-dbpoc-uksouth"
-metastore_name = "dbpoc-metastore-dev-uksouth"
-
-databricks_account_id = "databricks_account_id"
-databricks_client_id     = "databricks_client_id"
-databricks_client_secret = "databricks_client_secret"
-
-azure_client_id       = "azure_client_id"
-azure_client_secret   = "azure_client_secret"
-azure_tenant_id       = "azure_tenant_id"
-azure_subscription_id = "azure_subscription_id"
+metastore_name = "dbpoc-metastore-uksouth"
 
 
 ## Meta Data

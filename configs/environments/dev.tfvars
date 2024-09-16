@@ -5,25 +5,16 @@ project_name                   = "dbs-poc"
 environment_name               = "dev"
 spoke_vnet_address_space       = "10.0.0.0/16"
 
-databricks_workspace_name      = "dbw-poc-dev"
+databricks_workspace_name      = "dbs-poc-dev"
 private_subnet_address_prefixes = ["10.0.1.0/24"]
 public_subnet_address_prefixes  = ["10.0.2.0/24"]
-
-databricks_account_id = "databricks_account_id"
-databricks_client_id     = "databricks_client_id"
-databricks_client_secret = "databricks_client_secret"
-
-azure_client_id       = "azure_client_id"
-azure_client_secret   = "azure_client_secret"
-azure_tenant_id       = "azure_tenant_id"
-azure_subscription_id = "azure_subscription_id"
 
 # Optional variables with default values
 create_resource_group          = true
 managed_resource_group_name    = "rg-databricks-managed-dev"
 storage_account_names          = ["stadbs-poc-dev"]
-# data_factory_name              = "adf-dbs-poc-dev"
-# key_vault_name                 = "kv-dbs-poc-dev"
+# data_factory_name              = "adf-dbs-poc"
+# key_vault_name                 = "kv-dbs-poc"
 
 ## Meta Data
 tags = {
