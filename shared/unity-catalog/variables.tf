@@ -1,22 +1,3 @@
-variable "azure_tenant_id" {
-  description = "The Tenant ID of the Service Principal"
-  type        = string
-}
-
-variable "azure_subscription_id" {
-  description = "The Subscription ID for Azure"
-  type        = string
-}
-
-variable "azure_client_id" {
-  description = "The Client ID (appId) of the Service Principal"
-  type        = string
-}
-
-variable "azure_client_secret" {
-  description = "The Client Secret (password) of the Service Principal"
-  type        = string
-}
 
 ### Databricks UC Meta Store #####################
 variable "shared_resource_group_name" {
