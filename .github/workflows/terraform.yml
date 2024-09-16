@@ -22,23 +22,23 @@ jobs:
       with:
         terraform_version: 1.4.6  # Use the appropriate Terraform version
 
-    # - name: Print working directory and tree
-    #   run: |
-    #     pwd
-    #     tree
+    - name: Print working directory and tree
+      run: |
+        pwd
+        tree
 
-    # - name: Setup ENV variables-
-    #   run: echo "Environment variables set"
-    #   env:
-    #     # Databricks environment variables
-    #     DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-    #     DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+    - name: Setup ENV variables-
+      run: echo "Environment variables set"
+      env:
+        # Databricks environment variables
+        DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+        DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
 
-    #     # Azure environment variables
-    #     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-    #     ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-    #     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    #     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        # Azure environment variables
+        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
     - name: Navigate to /shared/unity-catalog and run Terraform Init
       run: |
@@ -52,14 +52,14 @@ jobs:
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
       env:
         # Databricks environment variables
-        DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
-        DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
+        TF_VAR_DATABRICKS_CLIENT_ID: ${{ env.TF_VAR_DATABRICKS_CLIENT_ID}}
+        TF_VAR_DATABRICKS_CLIENT_SECRET: ${{ env.DATABRICKS_CLIENT_SECRET }}
 
         # Azure environment variables
-        ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-        ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+        TF_VAR_ARM_CLIENT_ID: ${{ env.AZURE_CLIENT_ID }}
+        TF_VAR_ARM_CLIENT_SECRET: ${{ env.AZURE_CLIENT_SECRET }}
+        TF_VAR_ARM_SUBSCRIPTION_ID: ${{ env.AZURE_SUBSCRIPTION_ID }}
+        TF_VAR_ARM_TENANT_ID: ${{ env.AZURE_TENANT_ID }}
       
     - name: Navigate to /workspace/ws-datalake and create workspaces
       run: |
