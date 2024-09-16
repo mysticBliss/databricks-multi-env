@@ -27,7 +27,7 @@ jobs:
     #     pwd
     #     tree
 
-    - name: Setup ENV variables
+    - name: Setup ENV variables-
       run: echo "Environment variables set"
       env:
         # Databricks environment variables
