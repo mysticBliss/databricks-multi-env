@@ -32,14 +32,10 @@ jobs:
       with:
         terraform_version: 1.9.5
 
-    - name: Navigate to /shared/unity-catalog and run Terraform Init
+    - name: Navigate to /shared/unity-catalog and run Terraform Apply
       run: |
         cd shared/unity-catalog
         terraform init
-
-    - name: Navigate to /shared/unity-catalog and run Terraform Plan
-      run: |
-        cd shared/unity-catalog
         terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
         terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
       
