@@ -1,4 +1,4 @@
-name: Terraform
+name: Creating Infrastrucure with Terraform
 
 on:
   push:
@@ -10,8 +10,9 @@ on:
 
 jobs:
   terraform:
-    name: Execute Terraform
+    name: Run Terraform
     runs-on: ubuntu-latest
+
     env:
       # Azure environment variables
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -28,27 +29,27 @@ jobs:
         with:
           terraform_version: 1.9.5
 
-      - name: Navigate to /shared/unity-catalog and run Terraform Apply
+      - name: Apply Terraform Unity Catalog
         run: |
           cd shared/unity-catalog
           terraform init
           terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
           terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
-      
-      - name: Navigate to /workspace/ws-datalake and create workspaces
+
+      - name: Manage Workspaces and Apply Terraform for Environments
         run: |
           cd workspace/ws-datalake
+          
+          # Create workspaces if they don't exist
           terraform workspace new dev || true
           terraform workspace new pre || true
           terraform workspace new prod || true
 
-      - name: Select workspace and apply Terraform for all environments
-        run: |
-          cd workspace/ws-datalake
-          
+          # Apply Terraform for each environment
           for env in dev pre prod; do
             terraform workspace select $env
             terraform init
-            terraform plan --var-file="../../configs/environments/$env.tfvars"
-            terraform apply --var-file="../../configs/environments/$env.tfvars" -auto-approve
+            terraform plan --var-file="../../configs/environments/${env}.tfvars"
+            terraform apply --var-file="../../configs/environments/${env}.tfvars" -auto-approve
           done
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
