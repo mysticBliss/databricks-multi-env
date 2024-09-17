@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       # Datarbicks environment variables # Because we set auth_type = "oauth-m2m" in provider
-      DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
+      # DATABRICKS_CLIENT_ID: ${{ secrets.DATABRICKS_CLIENT_ID }}
       # DATABRICKS_CLIENT_SECRET: ${{ secrets.DATABRICKS_CLIENT_SECRET }}
 
       # Azure environment variables
