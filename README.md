@@ -66,13 +66,6 @@ Before running Terraform, you need to set the appropriate variables for each env
    metastore_name = "dbpoc-metastore-uksouth"
    
    databricks_account_id = "databricks_account_id"
-   databricks_client_id     = "databricks_client_id"
-   databricks_client_secret = "databricks_client_secret"
-   
-   azure_client_id       = "azure_client_id"
-   azure_client_secret   = "azure_client_secret"
-   azure_tenant_id       = "azure_tenant_id"
-   azure_subscription_id = "azure_subscription_id"
    ```
 
 2. **Environment-specific Variables**:
