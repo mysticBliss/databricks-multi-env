@@ -10,7 +10,7 @@ on:
 
 jobs:
   terraform:
-    name: Run Terraform
+    name: Execute Terraform
     runs-on: ubuntu-latest
     env:
       # Azure environment variables
