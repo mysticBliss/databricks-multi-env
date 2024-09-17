@@ -1,4 +1,4 @@
-name: Creating Infrastrucure with Terraform
+name: Creating Infrastructure with Terraform
 
 on:
   push:
@@ -37,9 +37,10 @@ jobs:
           terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
 
       - name: Manage Workspaces and Apply Terraform for Environments
+        if: github.ref == 'refs/heads/working-poc-v2' && github.event_name == 'push'
         run: |
           cd workspace/ws-datalake
-          
+
           # Create workspaces if they don't exist
           terraform workspace new dev || true
           terraform workspace new pre || true
@@ -52,4 +53,3 @@ jobs:
             terraform plan --var-file="../../configs/environments/${env}.tfvars"
             terraform apply --var-file="../../configs/environments/${env}.tfvars" -auto-approve
           done
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
