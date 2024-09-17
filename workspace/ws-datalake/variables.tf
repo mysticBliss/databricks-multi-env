@@ -74,43 +74,10 @@ variable "storage_account_names" {
 }
 
 
-## Azure 
-
-variable "azure_tenant_id" {
-  description = "The Tenant ID of the Service Principal"
-  type        = string
-}
-
-variable "azure_subscription_id" {
-  description = "The Subscription ID for Azure"
-  type        = string
-}
-
-variable "azure_client_id" {
-  description = "The Client ID (appId) of the Service Principal"
-  type        = string
-}
-
-variable "azure_client_secret" {
-  description = "The Client Secret (password) of the Service Principal"
-  type        = string
-}
 
 ## DataBricks
 variable "databricks_account_id" {
   description = "Datarbicks account ID"
-  type        = string
-
-}
-
-variable "databricks_client_id" {
-  description = "Datarbicks client ID"
-  type        = string
-
-}
-
-variable "databricks_client_secret" {
-  description = "Datarbicks client_secret ID"
   type        = string
 
 }

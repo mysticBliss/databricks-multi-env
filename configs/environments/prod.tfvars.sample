@@ -10,13 +10,7 @@ private_subnet_address_prefixes = ["10.0.1.0/24"]
 public_subnet_address_prefixes  = ["10.0.2.0/24"]
 
 databricks_account_id = "databricks_account_id"
-databricks_client_id     = "databricks_client_id"
-databricks_client_secret = "databricks_client_secret"
 
-azure_client_id       = "azure_client_id"
-azure_client_secret   = "azure_client_secret"
-azure_tenant_id       = "azure_tenant_id"
-azure_subscription_id = "azure_subscription_id"
 
 # Optional variables with default values
 create_resource_group          = true
