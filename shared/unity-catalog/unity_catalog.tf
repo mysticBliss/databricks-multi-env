@@ -12,6 +12,7 @@ module "calling_unity_catalog" {
   providers = {
     azurerm    = azurerm
     databricks = databricks.account
+    
   }
 
 }
