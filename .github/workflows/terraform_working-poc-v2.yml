@@ -40,7 +40,7 @@ jobs:
         if: github.ref == 'refs/heads/working-poc-v2' && github.event_name == 'push'
         run: |
           cd workspace/ws-datalake
-
+          terraform init
           # Create workspaces if they don't exist
           terraform workspace new dev || true
           terraform workspace new pre || true
