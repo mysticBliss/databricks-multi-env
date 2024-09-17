@@ -74,6 +74,23 @@ variable "storage_account_names" {
 }
 
 
+## Backend
+variable "bkend_rg" {
+  type = string
+}
+
+variable "bkend_storage_acc" {
+  type = string
+}
+
+variable "bkend_container_name" {
+  type = string
+}
+
+variable "bkend_key" {
+  type = string
+}
+
 
 ## DataBricks
 variable "databricks_account_id" {

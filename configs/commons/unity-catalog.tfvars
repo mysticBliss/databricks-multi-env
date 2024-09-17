@@ -6,6 +6,12 @@ metastore_name = "dbpoc-metastore-uksouth"
 
 databricks_account_id = "af587e06-4e3e-4d83-943d-68e7f131287d"
 
+# Setup for backend
+bkend_rg = "CP-CLOUD-SUPPORT"
+bkend_storage_acc = "cpcloudsupport2tfstates"
+bkend_container_name = "databricks-multienv-poc"
+bkend_key = "terraform.tfstate"
+
 ## Meta Data
 tags = {
     createdByTerraform = "True"

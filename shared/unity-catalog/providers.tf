@@ -10,10 +10,10 @@ terraform {
     }
   }
   backend "azurerm" {
-    resource_group_name  = "CP-CLOUD-SUPPORT"
-    storage_account_name = "cpcloudsupport2tfstates"
-    container_name       = "databricks-multienv-poc"
-    key                  = "terraform.tfstate"
+    resource_group_name  = var.bkend_rg
+    storage_account_name = var.bkend_storage_acc
+    container_name       = var.bkend_container_name
+    key                  = var.bkend_key
   }
 }
 

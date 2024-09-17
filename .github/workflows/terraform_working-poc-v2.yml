@@ -3,10 +3,10 @@ name: Creating Infrastructure with Terraform
 on:
   push:
     branches:
-      - working-poc-v2
+      - main
   pull_request:
     branches:
-      - working-poc-v2
+      - main
 
 jobs:
   terraform:
