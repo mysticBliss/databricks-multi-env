@@ -1,4 +1,3 @@
-
 ### Databricks UC Meta Store #####################
 variable "shared_resource_group_name" {
   type        = string
@@ -31,12 +30,31 @@ variable "tags" {
   description = "(Required) Map of tags to attach to resources"
 }
 
-variable "account_id" {
-  description = "Datarbicks account ID"
-  type        = string
-  sensitive = true
+
+## Backend
+variable "bkend_rg" {
+  type = string
 }
 
+variable "bkend_storage_acc" {
+  type = string
+}
+
+variable "bkend_container_name" {
+  type = string
+}
+
+variable "bkend_key" {
+  type = string
+}
+
+
+## DataBricks
+variable "databricks_account_id" {
+  description = "Datarbicks account ID"
+  type        = string
+
+}
 
 
 

@@ -74,8 +74,27 @@ variable "storage_account_names" {
 }
 
 
-variable "account_id" {
+## Backend
+variable "bkend_rg" {
+  type = string
+}
+
+variable "bkend_storage_acc" {
+  type = string
+}
+
+variable "bkend_container_name" {
+  type = string
+}
+
+variable "bkend_key" {
+  type = string
+}
+
+
+## DataBricks
+variable "databricks_account_id" {
   description = "Datarbicks account ID"
   type        = string
-  sensitive = true
+
 }

@@ -1,0 +1,55 @@
+name: Creating Infrastructure with Terraform
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    name: Run Terraform
+    runs-on: ubuntu-latest
+
+    env:
+      # Azure environment variables
+      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.5
+
+      - name: Apply Terraform Unity Catalog
+        run: |
+          cd shared/unity-catalog
+          terraform init
+          terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
+          terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
+
+      - name: Manage Workspaces and Apply Terraform for Environments
+        if: github.ref == 'refs/heads/working-poc-v2' && github.event_name == 'push'
+        run: |
+          cd workspace/ws-datalake
+          terraform init
+          # Create workspaces if they don't exist
+          terraform workspace new dev || true
+          terraform workspace new pre || true
+          terraform workspace new prod || true
+
+          # Apply Terraform for each environment
+          for env in dev pre prod; do
+            terraform workspace select $env
+            terraform init
+            terraform plan --var-file="../../configs/environments/${env}.tfvars"
+            terraform apply --var-file="../../configs/environments/${env}.tfvars" -auto-approve
+          done

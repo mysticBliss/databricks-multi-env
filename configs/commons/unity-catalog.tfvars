@@ -3,16 +3,22 @@ location = "UK South"
 metastore_storage_name =  "dbpocmetastoreuksouth"
 access_connector_name = "dac-dbpoc-uksouth"
 metastore_name = "dbpoc-metastore-uksouth"
-account_id = "71b0fdda-fef1-408d-825b-a2eb553af2c3"
 
+databricks_account_id = "af587e06-4e3e-4d83-943d-68e7f131287d"
+
+# Setup for backend
+bkend_rg = "CP-CLOUD-SUPPORT"
+bkend_storage_acc = "cpcloudsupport2tfstates"
+bkend_container_name = "databricks-multienv-poc"
+bkend_key = "terraform.tfstate"
 
 ## Meta Data
 tags = {
     createdByTerraform = "True"
-    createdBy          = "saqib.tamli@someone.com"
+    createdBy          = "saqib.tamli@clearpeaks.com"
     Team               = "BDC"
-    Owner              = "saqib.tamli@someone.com"
+    Owner              = "saqib.tamli@clearpeaks.com"
     Project            = "Databricks Infra"
     Project-Type       = "POC"
-    Requestor          = "saqib.tamli@someone.com"
+    Requestor          = "saqib.tamli@clearpeaks.com"
   }
