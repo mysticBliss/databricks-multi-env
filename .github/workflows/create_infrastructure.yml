@@ -4,11 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'shared/unity-catalog/**'
-      - 'workspace/ws-datalake/**'
-      - 'configs/commons/**'
-      - 'configs/environments/**'
   pull_request:
     branches:
       - main
@@ -32,6 +27,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Print environment variables
+        run: |
+          echo "Environment: ${{ matrix.environment }}"
+          echo "AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}"
+          echo "AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}"
+          echo "AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}"
+          echo "AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}"
+
       - uses: ./setup-terraform.yml
 
       - uses: ./init-terraform.yml
@@ -39,3 +42,12 @@ jobs:
       - uses: ./apply-terraform-unity-catalog.yml
 
       - uses: ./apply-environments.yml
+
+      - name: Print workflow context
+        run: |
+          echo "Workflow context:"
+          echo "  Event: $GITHUB_EVENT_NAME"
+          echo "  Action: $GITHUB_ACTION"
+          echo "  Workflow: $GITHUB_WORKFLOW"
+          echo "  Repository: $GITHUB_REPOSITORY"
+          echo "  Branch: $GITHUB_REF"
