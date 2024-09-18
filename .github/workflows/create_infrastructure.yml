@@ -46,7 +46,7 @@ jobs:
   apply-environment:
     name: Apply Terraform for ${{ inputs.environment }}
     runs-on: ubuntu-latest
-    needs: apply-unity-catalog
+    needs: [apply-unity-catalog, setup-terraform]
 
     steps:
       - name: Checkout code

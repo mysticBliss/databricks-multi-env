@@ -10,18 +10,18 @@ on:
 
 jobs:
   call-terraform-dev:
-    uses: ./.github/workflows/create_infrastructure.yml
+    uses: ./.github/workflows/terraform-workflow.yml
     with:
       environment: 'dev'
 
   call-terraform-pre:
-    uses: ./.github/workflows/create_infrastructure.yml
+    uses: ./.github/workflows/terraform-workflow.yml
     with:
       environment: 'pre'
     needs: call-terraform-dev  # Ensure this runs after the dev job
 
   call-terraform-prod:
-    uses: ./.github/workflows/create_infrastructure.yml
+    uses: ./.github/workflows/terraform-workflow.yml
     with:
       environment: 'prod'
     needs: call-terraform-pre  # Ensure this runs after the pre job
