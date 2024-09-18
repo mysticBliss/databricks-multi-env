@@ -2,8 +2,8 @@
 
 ```shell
 terraform init
-terraform plan  --var-file="../../configs/commons/unity-catalog"
-terraform apply --var-file="../../configs/commons/unity-catalogtfvars"
+terraform plan  --var-file="../../configs/commons/unity-catalog.tfvars"
+terraform apply --var-file="../../configs/commons/unity-catalog.tfvars"
 ```
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
