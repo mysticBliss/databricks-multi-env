@@ -38,4 +38,4 @@ jobs:
 
       - uses: ./apply-terraform-unity-catalog.yml
 
-      - uses: ./manage-workspaces-apply-terraform-environments.yml
+      - uses: ./apply-environments.yml

@@ -1,5 +1,11 @@
 name: Initialize Terraform
 
-steps:
-  - name: Initialize Terraform
-    run: terraform init
+on:
+  workflow_call:
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialize Terraform
+        run: terraform init
