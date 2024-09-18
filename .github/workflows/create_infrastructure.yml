@@ -48,7 +48,6 @@ jobs:
           terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
 
       - name: Manage Workspaces and Apply Terraform for Environments
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |
           cd workspace/ws-datalake
           terraform workspace new -force ${{ matrix.environment }}
