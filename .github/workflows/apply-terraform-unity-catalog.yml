@@ -1,0 +1,8 @@
+name: Apply Terraform Unity Catalog
+
+steps:
+  - name: Apply Terraform Unity Catalog
+    run: |
+      cd shared/unity-catalog
+      terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
+      terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve

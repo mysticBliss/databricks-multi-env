@@ -32,25 +32,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
-        with:
-          terraform_version: '~> 1.9'
+      - uses: ./setup-terraform.yml
 
-      - name: Initialize Terraform
-        run: |
-          terraform init
+      - uses: ./init-terraform.yml
 
-      - name: Apply Terraform Unity Catalog
-        run: |
-          cd shared/unity-catalog
-          terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
-          terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
+      - uses: ./apply-terraform-unity-catalog.yml
 
-      - name: Manage Workspaces and Apply Terraform for Environments
-        run: |
-          cd workspace/ws-datalake
-          terraform workspace new -force ${{ matrix.environment }}
-          terraform workspace select ${{ matrix.environment }}
-          terraform plan --var-file="../../configs/environments/${{ matrix.environment }}.tfvars"
-          terraform apply --var-file="../../configs/environments/${{ matrix.environment }}.tfvars" -auto-approve
+      - uses: ./manage-workspaces-apply-terraform-environments.yml

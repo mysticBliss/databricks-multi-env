@@ -1,0 +1,7 @@
+name: Setup Terraform
+
+steps:
+  - name: Setup Terraform
+    uses: hashicorp/setup-terraform@v2
+    with:
+      terraform_version: '~> 1.9'

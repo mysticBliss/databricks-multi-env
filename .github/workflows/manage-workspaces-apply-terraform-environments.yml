@@ -1,0 +1,10 @@
+name: Manage Workspaces and Apply Terraform for Environments
+
+steps:
+  - name: Manage Workspaces and Apply Terraform for Environments
+    run: |
+      cd workspace/ws-datalake
+      terraform workspace new -force ${{ matrix.environment }}
+      terraform workspace select ${{ matrix.environment }}
+      terraform plan --var-file="../../configs/environments/${{ matrix.environment }}.tfvars"
+      terraform apply --var-file="../../configs/environments/${{ matrix.environment }}.tfvars" -auto-approve

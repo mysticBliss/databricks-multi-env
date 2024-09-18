@@ -1,0 +1,5 @@
+name: Initialize Terraform
+
+steps:
+  - name: Initialize Terraform
+    run: terraform init
