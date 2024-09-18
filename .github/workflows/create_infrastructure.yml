@@ -8,46 +8,53 @@ on:
     branches:
       - main
 
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
 jobs:
-  terraform:
-    name: Run Terraform
+  setup-terraform:
+    name: Setup Terraform
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.9.5
+
+  apply-terraform:
+    name: Apply Terraform
+    runs-on: ubuntu-latest
+    needs: setup-terraform
     strategy:
       matrix:
         environment: [dev, pre, prod]
 
-    env:
-      # Azure environment variables
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Print environment variables
+      - name: Apply Terraform Unity Catalog
         run: |
-          echo "Environment: ${{ matrix.environment }}"
-          echo "AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}"
-          echo "AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}"
-          echo "AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}"
-          echo "AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}"
+          cd shared/unity-catalog
+          terraform init
+          terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
+          terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
 
-      - uses: ./setup-terraform.yml
-
-      - uses: ./init-terraform.yml
-
-      - uses: ./apply-terraform-unity-catalog.yml
-
-      - uses: ./apply-environments.yml
-
-      - name: Print workflow context
+      - name: Manage Workspaces and Apply Terraform for ${{ matrix.environment }}
         run: |
-          echo "Workflow context:"
-          echo "  Event: $GITHUB_EVENT_NAME"
-          echo "  Action: $GITHUB_ACTION"
-          echo "  Workflow: $GITHUB_WORKFLOW"
-          echo "  Repository: $GITHUB_REPOSITORY"
-          echo "  Branch: $GITHUB_REF"
+          cd workspace/ws-datalake
+          terraform init
+
+          # Create workspace if it doesn't exist
+          terraform workspace new ${{ matrix.environment }} || true
+          terraform workspace select ${{ matrix.environment }}
+          terraform init
+          terraform plan --var-file="../../configs/environments/${{ matrix.environment }}.tfvars"
+          terraform apply --var-file="../../configs/environments/${{ matrix.environment }}.tfvars" -auto-approve
