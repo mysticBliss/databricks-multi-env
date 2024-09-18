@@ -21,10 +21,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to the latest version
 
       - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v2
+        uses: hashicorp/setup-terraform@v3  # Update to the latest version
         with:
           terraform_version: 1.9.5
 
@@ -35,7 +35,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to the latest version
 
       - name: Apply Terraform Unity Catalog
         run: |
@@ -51,7 +51,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to the latest version
 
       - name: Manage Workspaces and Apply Terraform for Dev
         run: |
@@ -70,7 +70,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to the latest version
 
       - name: Manage Workspaces and Apply Terraform for Pre
         run: |
@@ -89,7 +89,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Update to the latest version
 
       - name: Manage Workspaces and Apply Terraform for Prod
         run: |
