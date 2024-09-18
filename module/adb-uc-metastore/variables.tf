@@ -27,4 +27,3 @@ variable "tags" {
   type        = map(string)
   description = "(Required) Map of tags to attach to resources"
 }
-

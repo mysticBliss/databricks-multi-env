@@ -9,7 +9,7 @@ terraform {
       version = "1.51.0"
     }
   }
-  
+
   backend "azurerm" {
     resource_group_name  = "CP-CLOUD-SUPPORT"
     storage_account_name = "cpcloudsupport2tfstates"

@@ -1,10 +1,18 @@
-<!-- BEGIN_TF_DOCS -->
+## Execution
+
+```shell
+terraform init
+terraform plan  --var-file="../../configs/environments/${env}.tfvars"
+terraform apply --var-file="../../configs/environments/${env}.tfvars"
+```
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
-No requirements.
-
-terrafomr plan
-terraform apply --var-file="../../configs/commons/unity-catalog.tfvars"
+| Name | Version |
+|------|---------|
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | 4.2.0 |
+| <a name="requirement_databricks"></a> [databricks](#requirement\_databricks) | 1.51.0 |
 
 ## Providers
 
@@ -24,13 +32,9 @@ No resources.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_account_id"></a> [account\_id](#input\_account\_id) | Datarbicks account ID | `string` | n/a | yes |
-| <a name="input_azure_client_id"></a> [azure\_client\_id](#input\_azure\_client\_id) | The Client ID (appId) of the Service Principal | `string` | n/a | yes |
-| <a name="input_azure_client_secret"></a> [azure\_client\_secret](#input\_azure\_client\_secret) | The Client Secret (password) of the Service Principal | `string` | n/a | yes |
-| <a name="input_azure_subscription_id"></a> [azure\_subscription\_id](#input\_azure\_subscription\_id) | The Subscription ID for Azure | `string` | n/a | yes |
-| <a name="input_azure_tenant_id"></a> [azure\_tenant\_id](#input\_azure\_tenant\_id) | The Tenant ID of the Service Principal | `string` | n/a | yes |
 | <a name="input_create_resource_group"></a> [create\_resource\_group](#input\_create\_resource\_group) | (Optional) Creates resource group if set to true (default) | `bool` | `true` | no |
 | <a name="input_data_factory_name"></a> [data\_factory\_name](#input\_data\_factory\_name) | The name of the Azure Data Factory to deploy. Won't be created if not specified | `string` | `""` | no |
+| <a name="input_databricks_account_id"></a> [databricks\_account\_id](#input\_databricks\_account\_id) | Datarbicks account ID | `string` | n/a | yes |
 | <a name="input_databricks_workspace_name"></a> [databricks\_workspace\_name](#input\_databricks\_workspace\_name) | Name of Databricks workspace | `string` | n/a | yes |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | (Required) The name of the project environment associated with the infrastructure to be managed by Terraform | `string` | n/a | yes |
 | <a name="input_key_vault_name"></a> [key\_vault\_name](#input\_key\_vault\_name) | The name of the Azure Key Vault to deploy. Won't be created if not specified | `string` | `""` | no |
@@ -47,5 +51,4 @@ No resources.
 ## Outputs
 
 No outputs.
-<!-- END_TF_DOCS -->
-
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

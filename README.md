@@ -23,7 +23,7 @@ databricks-multi-env/
 ├── module/
 │       ├── adb-lakehouse/
 │       └── adb-uc-metastore/
-│       
+│  
 ├── workspace/
 │   └── ws-datalake/
 │       ├── main.tf
@@ -56,7 +56,7 @@ These modules are designed to work together to create a comprehensive Databricks
 
 Before running Terraform, you need to set the appropriate variables for each environment and the Unity Catalog. This is done through .tfvars files:
 
-1. **Unity Catalog Variables**: 
+1. **Unity Catalog Variables**:
    Edit `commons/unity.tfvars.sample` to set variables specific to the Unity Catalog setup and rename is as `commons/unity.tfvars`. These include:
 
    ```hcl
@@ -65,7 +65,7 @@ Before running Terraform, you need to set the appropriate variables for each env
    metastore_storage_name =  "dbpocmetastoreuksouth"
    access_connector_name = "dac-dbpoc-uksouth"
    metastore_name = "dbpoc-metastore-uksouth"
-   
+
    databricks_account_id = "your databricks account id"
    ```
 

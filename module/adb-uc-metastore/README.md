@@ -24,4 +24,3 @@ This module can be used to perform following tasks:
 5. (Optional) Configure your [remote backend](https://developer.hashicorp.com/terraform/language/settings/backends/azurerm)
 6. Run `terraform init` to initialize terraform and get provider ready.
 7. Run `terraform apply` to create the resources.
-
