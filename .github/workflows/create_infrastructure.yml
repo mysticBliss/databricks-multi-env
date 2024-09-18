@@ -1,12 +1,11 @@
-name: Creating Infrastructure with Terraform
+name: Terraform Workflow
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -28,13 +27,10 @@ jobs:
         with:
           terraform_version: 1.9.5
 
-  apply-terraform:
-    name: Apply Terraform
+  apply-unity-catalog:
+    name: Apply Terraform Unity Catalog
     runs-on: ubuntu-latest
     needs: setup-terraform
-    strategy:
-      matrix:
-        environment: [dev, pre, prod]
 
     steps:
       - name: Checkout code
@@ -47,14 +43,23 @@ jobs:
           terraform plan --var-file="../../configs/commons/unity-catalog.tfvars"
           terraform apply --var-file="../../configs/commons/unity-catalog.tfvars" -auto-approve
 
-      - name: Manage Workspaces and Apply Terraform for ${{ matrix.environment }}
+  apply-environment:
+    name: Apply Terraform for ${{ inputs.environment }}
+    runs-on: ubuntu-latest
+    needs: apply-unity-catalog
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Manage Workspaces and Apply Terraform
         run: |
           cd workspace/ws-datalake
           terraform init
 
           # Create workspace if it doesn't exist
-          terraform workspace new ${{ matrix.environment }} || true
-          terraform workspace select ${{ matrix.environment }}
+          terraform workspace new ${{ inputs.environment }} || true
+          terraform workspace select ${{ inputs.environment }}
           terraform init
-          terraform plan --var-file="../../configs/environments/${{ matrix.environment }}.tfvars"
-          terraform apply --var-file="../../configs/environments/${{ matrix.environment }}.tfvars" -auto-approve
+          terraform plan --var-file="../../configs/environments/${{ inputs.environment }}.tfvars"
+          terraform apply --var-file="../../configs/environments/${{ inputs.environment }}.tfvars" -auto-approve
