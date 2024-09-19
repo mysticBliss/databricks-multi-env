@@ -1,5 +1,7 @@
-# databricks-multi-env
+
 [![Creating Infrastructure with Terraform](https://github.com/mysticBliss/databricks-multi-env/actions/workflows/create_infrastructure.yml/badge.svg)](https://github.com/mysticBliss/databricks-multi-env/actions/workflows/create_infrastructure.yml)
+
+# databricks-multi-env
 
 This guide outlines the process for setting up `Databricks Platform with multiple environments using Terraform`. We'll create a Unity Catalog and then set up workspaces for development, pre-production, and production environments.
 
@@ -205,7 +207,7 @@ You can manually run the checks without attempting to commit with the command:
 ## Creating infrastructure with Terrafom
 
 
-![alt text](image.png)
+![alt text](pipeline.png)
 
 
 ## Important Notes
