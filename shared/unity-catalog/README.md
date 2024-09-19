@@ -22,7 +22,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_calling_unity_catalog"></a> [calling\_unity\_catalog](#module\_calling\_unity\_catalog) | ../../module/adb-uc-metastore | n/a |
+| <a name="module_adb_uc_metastore"></a> [adb\_uc\_metastore](#module\_adb\_uc\_metastore) | ../../module/adb-uc-metastore | n/a |
 
 ## Resources
 

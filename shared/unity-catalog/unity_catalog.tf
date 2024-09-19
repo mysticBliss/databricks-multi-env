@@ -1,5 +1,5 @@
 # Calling Unity Catalog Module
-module "calling_unity_catalog" {
+module "adb_uc_metastore" {
   source = "../../module/adb-uc-metastore"
 
   shared_resource_group_name = var.shared_resource_group_name
@@ -12,7 +12,6 @@ module "calling_unity_catalog" {
   providers = {
     azurerm    = azurerm
     databricks = databricks.account
-
   }
 
 }

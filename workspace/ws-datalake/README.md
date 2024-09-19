@@ -16,7 +16,9 @@ terraform apply --var-file="../../configs/environments/${env}.tfvars"
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_databricks.account"></a> [databricks.account](#provider\_databricks.account) | 1.51.0 |
 
 ## Modules
 
@@ -26,7 +28,10 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [databricks_metastore_assignment.default_metastore](https://registry.terraform.io/providers/databricks/databricks/1.51.0/docs/resources/metastore_assignment) | resource |
+| [databricks_metastore.this](https://registry.terraform.io/providers/databricks/databricks/1.51.0/docs/data-sources/metastore) | data source |
 
 ## Inputs
 

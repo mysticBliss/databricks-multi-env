@@ -1,4 +1,4 @@
-# Calling Simple Module
+
 module "calling_lakehouse" {
 
   source = "../../module/adb-lakehouse"
@@ -13,5 +13,20 @@ module "calling_lakehouse" {
   private_subnet_address_prefixes = var.private_subnet_address_prefixes
   public_subnet_address_prefixes  = var.public_subnet_address_prefixes
   tags                            = var.tags
+
+
+}
+
+# Fetch Metastore information from Databricks
+data "databricks_metastore" "this" {
+  region   = var.location
+  provider = databricks.account
+}
+
+# Assign workspaces to metastore
+resource "databricks_metastore_assignment" "default_metastore" {
+  workspace_id = module.calling_lakehouse.workspace_id
+  metastore_id = data.databricks_metastore.this.metastore_id
+  provider     = databricks.account
 
 }
