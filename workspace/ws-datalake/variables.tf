@@ -80,3 +80,10 @@ variable "databricks_account_id" {
   type        = string
 
 }
+
+# AD Users
+
+variable "aad_groups" {
+  description = "List of AAD groups that you want to add to Databricks account"
+  type        = list(string)
+}
