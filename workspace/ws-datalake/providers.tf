@@ -8,6 +8,10 @@ terraform {
       source  = "databricks/databricks"
       version = "1.51.0"
     }
+    azuread = {
+      source = "hashicorp/azuread"
+      version = "2.53.1"
+    }
   }
 
   backend "azurerm" {
@@ -25,6 +29,8 @@ provider "azurerm" {
   features {}
 }
 
+provider "azuread" {
+}
 
 provider "databricks" {
 

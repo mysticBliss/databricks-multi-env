@@ -18,6 +18,8 @@ storage_account_names       = ["stadbs-poc-dev"]
 # data_factory_name              = "adf-dbs-poc-dev"
 # key_vault_name                 = "kv-dbs-poc-dev"
 
+ # Assign AD users
+ aad_groups = ["bigdata"]
 
 ## Meta Data
 tags = {
